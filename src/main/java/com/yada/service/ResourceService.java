@@ -1,5 +1,6 @@
 package com.yada.service;
 
+import com.yada.commons.base.BaseService;
 import com.yada.commons.result.Tree;
 import com.yada.commons.shiro.ShiroUser;
 import com.yada.model.Resource;

@@ -1,5 +1,6 @@
 package com.yada.service;
 
+import com.yada.commons.base.BaseService;
 import com.yada.commons.result.PageInfo;
 import com.yada.model.User;
 
