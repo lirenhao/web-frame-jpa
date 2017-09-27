@@ -4,6 +4,7 @@ import com.yada.commons.result.PageInfo;
 import com.yada.commons.result.Tree;
 import com.yada.commons.utils.StringUtils;
 import com.yada.dao.RoleDao;
+import com.yada.dao.UserDao;
 import com.yada.model.Resource;
 import com.yada.model.Role;
 import com.yada.service.RoleService;
@@ -26,10 +27,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleDao roleDao;
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public void selectDataGrid(PageInfo pageInfo) {
-        Pageable page = new PageRequest(pageInfo.getSize(), pageInfo.getNowpage(),
+        // TODO 修改数据传输
+        Pageable page = new PageRequest(pageInfo.getNowpage() - 1, pageInfo.getSize(),
                 "asc".equals(pageInfo.getOrder()) ? Sort.Direction.ASC : Sort.Direction.DESC, pageInfo.getSort());
         Page<Role> roles = roleDao.findAll(page);
 
@@ -79,7 +83,7 @@ public class RoleServiceImpl implements RoleService {
         Set<String> urlSet = new HashSet<String>();
         Set<String> roles = new HashSet<String>();
 
-        List<Long> roleIdList = roleDao.findIdByUserId(userId);
+        List<Long> roleIdList = userDao.findRoleIdById(userId);
         for (Long roleId : roleIdList) {
             Role role = roleDao.findOne(roleId);
             if (role != null) {

@@ -4,6 +4,7 @@ import com.yada.commons.result.Tree;
 import com.yada.commons.shiro.ShiroUser;
 import com.yada.dao.ResourceDao;
 import com.yada.dao.RoleDao;
+import com.yada.dao.UserDao;
 import com.yada.model.Resource;
 import com.yada.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class ResourceServiceImpl implements ResourceService {
     private ResourceDao resourceDao;
     @Autowired
     private RoleDao roleDao;
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public List<Resource> selectAll() {
@@ -76,7 +79,7 @@ public class ResourceServiceImpl implements ResourceService {
             return trees;
         }
         // 普通用户
-        List<Long> roleIdList = roleDao.findIdByUserId(shiroUser.getId());
+        List<Long> roleIdList = userDao.findRoleIdById(shiroUser.getId());
         if (roleIdList == null) {
             return trees;
         }

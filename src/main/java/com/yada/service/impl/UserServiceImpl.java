@@ -52,7 +52,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void selectDataGrid(PageInfo pageInfo) {
-        Pageable page = new PageRequest(pageInfo.getNowpage(), pageInfo.getSize(), Sort.Direction.ASC, pageInfo.getSort());
+        Pageable page = new PageRequest(pageInfo.getNowpage() - 1, pageInfo.getSize(),
+                "asc".equals(pageInfo.getOrder()) ? Sort.Direction.ASC : Sort.Direction.DESC, pageInfo.getSort());
         Page<User> users = userDao.findAll(page);
 
         // TODO 查询条件

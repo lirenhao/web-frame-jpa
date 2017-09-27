@@ -14,9 +14,6 @@ import java.util.List;
  */
 public interface RoleDao extends JpaRepository<Role, Long>, JpaSpecificationExecutor<Role> {
 
-    @Query("SELECT role.id FROM Role as role JOIN role.users user WHERE user.id = :id")
-    List<Long> findIdByUserId(@Param("id") Long userId);
-
     List<Long> findResourceIdById(Long id);
 
     @Query("SELECT role.resources FROM Role as role WHERE role.id in :ids")

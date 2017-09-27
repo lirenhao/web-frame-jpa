@@ -1,6 +1,5 @@
 package com.yada.dao;
 
-import com.yada.model.Organization;
 import com.yada.model.SysLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

@@ -24,7 +24,8 @@ public class SysLogServiceImpl implements SysLogService {
 
     @Override
     public void selectDataGrid(PageInfo pageInfo) {
-        Pageable page = new PageRequest(pageInfo.getNowpage(), pageInfo.getSize(), Sort.Direction.ASC);
+        Pageable page = new PageRequest(pageInfo.getNowpage() - 1, pageInfo.getSize(),
+                "asc".equals(pageInfo.getOrder()) ? Sort.Direction.ASC : Sort.Direction.DESC, pageInfo.getSort());
         Page<SysLog> sysLogs = sysLogDao.findAll(page);
 
         pageInfo.setRows(sysLogs.getContent());

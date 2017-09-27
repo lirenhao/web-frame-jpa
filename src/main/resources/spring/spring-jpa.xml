@@ -16,25 +16,11 @@
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- dataSource -->
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-		<property name="url" value="${db.master.url}" />
-		<property name="username" value="${db.master.user}" />
-		<property name="password" value="${db.master.password}" />
-		<!-- 配置监控统计拦截的filters -->
-		<property name="filters" value="mergeStat,wall,log4j2" />
-		<property name="initialSize" value="5" />
-		<property name="maxActive" value="100" />
-		<property name="minIdle" value="10" />
-		<property name="maxWait" value="60000" />
-		<property name="validationQuery" value="SELECT 'x'" />
-		<property name="testOnBorrow" value="true" />
-		<property name="testOnReturn" value="true" />
-		<property name="testWhileIdle" value="true" />
-		<property name="timeBetweenEvictionRunsMillis" value="60000" />
-		<property name="minEvictableIdleTimeMillis" value="300000" />
-		<property name="removeAbandoned" value="true" />
-		<property name="removeAbandonedTimeout" value="1800" />
-		<property name="logAbandoned" value="true" />
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${db.master.driver}"/>
+		<property name="url" value="${db.master.url}"/>
+		<property name="username" value="${db.master.user}"/>
+		<property name="password" value="${db.master.password}"/>
 	</bean>
 
 	<jdbc:initialize-database data-source="dataSource">

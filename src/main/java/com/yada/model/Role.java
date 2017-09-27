@@ -23,15 +23,9 @@ public class Role implements Serializable {
     private Long id;
 
     /**
-     * 用户角色
-     */
-    @ManyToMany(mappedBy="roles")
-    private Set<User> users;
-
-    /**
      * 角色资源
      */
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "role_resource", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "resource_id"))
     private Set<Resource> resources;
 
@@ -62,14 +56,6 @@ public class Role implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
     public Set<Resource> getResources() {
