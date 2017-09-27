@@ -1,14 +1,14 @@
 package com.yada.query;
 
+import com.yada.commons.base.BaseQuery;
 import com.yada.model.Organization;
 import com.yada.model.User;
-import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UserQuery implements Specification<User> {
+public class UserQuery extends BaseQuery<User> {
 
     private String organizationId;
 

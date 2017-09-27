@@ -1,8 +1,9 @@
 package com.yada.controller;
 
 import com.yada.commons.base.BaseController;
-import com.yada.commons.result.PageInfo;
+import com.yada.commons.result.Data;
 import com.yada.model.Role;
+import com.yada.query.RoleQuery;
 import com.yada.service.RoleService;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,18 +40,13 @@ public class RoleController extends BaseController {
     /**
      * 权限列表
      *
-     * @param page
-     * @param rows
-     * @param sort
-     * @param order
+     * @param query
      * @return
      */
     @PostMapping("/dataGrid")
     @ResponseBody
-    public Object dataGrid(Integer page, Integer rows, String sort, String order) {
-        PageInfo pageInfo = new PageInfo(page, rows, sort, order);
-        roleService.selectDataGrid(pageInfo);
-        return pageInfo;
+    public Data dataGrid(RoleQuery query) {
+        return roleService.selectDataGrid(query);
     }
 
     /**

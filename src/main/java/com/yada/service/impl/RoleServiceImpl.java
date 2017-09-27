@@ -1,12 +1,13 @@
 package com.yada.service.impl;
 
-import com.yada.commons.result.PageInfo;
+import com.yada.commons.result.Data;
 import com.yada.commons.result.Tree;
 import com.yada.commons.utils.StringUtils;
 import com.yada.dao.RoleDao;
 import com.yada.dao.UserDao;
 import com.yada.model.Resource;
 import com.yada.model.Role;
+import com.yada.query.RoleQuery;
 import com.yada.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,14 +32,10 @@ public class RoleServiceImpl implements RoleService {
     private UserDao userDao;
 
     @Override
-    public void selectDataGrid(PageInfo pageInfo) {
-        // TODO 修改数据传输
-        Pageable page = new PageRequest(pageInfo.getNowpage() - 1, pageInfo.getSize(),
-                "asc".equals(pageInfo.getOrder()) ? Sort.Direction.ASC : Sort.Direction.DESC, pageInfo.getSort());
+    public Data selectDataGrid(RoleQuery query) {
+        Pageable page = new PageRequest(query.getPage(), query.getRows(), query.getOrder(), query.getSort());
         Page<Role> roles = roleDao.findAll(page);
-
-        pageInfo.setRows(roles.getContent());
-        pageInfo.setTotal((int) roles.getTotalElements());
+        return new Data(roles.getTotalElements(), roles.getContent());
     }
 
     @Override

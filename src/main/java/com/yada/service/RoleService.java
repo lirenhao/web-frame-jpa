@@ -1,8 +1,9 @@
 package com.yada.service;
 
 import com.yada.commons.base.BaseService;
-import com.yada.commons.result.PageInfo;
+import com.yada.commons.result.Data;
 import com.yada.model.Role;
+import com.yada.query.RoleQuery;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Set;
  */
 public interface RoleService extends BaseService<Role, Long> {
 
-    void selectDataGrid(PageInfo pageInfo);
+    Data selectDataGrid(RoleQuery query);
 
     Object selectTree();
 

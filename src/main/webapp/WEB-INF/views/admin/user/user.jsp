@@ -221,10 +221,10 @@
                     <td><input name="name" placeholder="请输入用户姓名"/></td>
                     <th>创建时间:</th>
                     <td>
-                        <input name="createdateStart" placeholder="点击选择时间"
+                        <input name="startTime" placeholder="点击选择时间"
                                onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
                                readonly="readonly"/>至
-                        <input name="createdateEnd" placeholder="点击选择时间"
+                        <input name="endTime" placeholder="点击选择时间"
                                onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
                                readonly="readonly"/>
                         <a href="javascript:void(0);" class="easyui-linkbutton"

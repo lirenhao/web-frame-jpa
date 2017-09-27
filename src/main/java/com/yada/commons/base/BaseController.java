@@ -1,6 +1,5 @@
 package com.yada.commons.base;
 
-import com.yada.commons.result.PageInfo;
 import com.yada.commons.result.Result;
 import com.yada.commons.shiro.ShiroUser;
 import com.yada.commons.utils.Charsets;
@@ -12,10 +11,6 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -120,20 +115,6 @@ public abstract class BaseController {
         result.setObj(obj);
         return result;
     }
-
-    public Pageable getPage(int current, int size, String sort, String order) {
-        return new PageRequest(current, size, "desc".equals(order) ? Sort.Direction.DESC: Sort.Direction.ASC, sort);
-    }
-
-    public <T> PageInfo pageToPageInfo(Page<T> page) {
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setRows(page.getContent());
-        pageInfo.setTotal((int) page.getTotalElements());
-// TODO 作用
-//       pageInfo.setOrder(page.getSort());
-        return pageInfo;
-    }
-
 
     /**
      * redirect跳转

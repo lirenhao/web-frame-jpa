@@ -1,10 +1,14 @@
 package com.yada.controller;
 
-import com.yada.commons.result.PageInfo;
+import com.yada.commons.result.Data;
+import com.yada.query.SysLogQuery;
 import com.yada.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 日志管理
@@ -23,11 +27,11 @@ public class SysLogController {
 
     @PostMapping("/dataGrid")
     @ResponseBody
-    public PageInfo dataGrid(Integer page, Integer rows,
-                             @RequestParam(value = "sort", defaultValue = "create_time") String sort,
-                             @RequestParam(value = "order", defaultValue = "DESC") String order) {
-        PageInfo pageInfo = new PageInfo(page, rows, sort, order);
-        sysLogService.selectDataGrid(pageInfo);
-        return pageInfo;
+    public Data dataGrid(SysLogQuery query) {
+//        @RequestParam(value = "sort", defaultValue = "") String sort,
+//        @RequestParam(value = "order", defaultValue = "DESC") String order
+        query.setOrder("DESC");
+        query.setSort("create_time");
+        return sysLogService.selectDataGrid(query);
     }
 }

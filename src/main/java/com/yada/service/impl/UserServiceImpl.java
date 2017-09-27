@@ -1,6 +1,6 @@
 package com.yada.service.impl;
 
-import com.yada.commons.result.PageInfo;
+import com.yada.commons.result.Data;
 import com.yada.commons.utils.StringUtils;
 import com.yada.dao.UserDao;
 import com.yada.model.User;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,13 +51,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void selectDataGrid(UserQuery query, PageInfo pageInfo) {
-        Pageable page = new PageRequest(pageInfo.getNowpage() - 1, pageInfo.getSize(),
-                "asc".equals(pageInfo.getOrder()) ? Sort.Direction.ASC : Sort.Direction.DESC, pageInfo.getSort());
+    public Data selectDataGrid(UserQuery query) {
+        Pageable page = new PageRequest(query.getPage(), query.getRows(), query.getOrder(), query.getSort());
         Page<User> users = userDao.findAll(query, page);
-
-        pageInfo.setRows(users.getContent());
-        pageInfo.setTotal((int) users.getTotalElements());
+        return new Data(users.getTotalElements(), users.getContent());
     }
 
 

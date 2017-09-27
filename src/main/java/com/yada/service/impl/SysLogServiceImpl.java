@@ -1,14 +1,14 @@
 package com.yada.service.impl;
 
-import com.yada.commons.result.PageInfo;
+import com.yada.commons.result.Data;
 import com.yada.dao.SysLogDao;
 import com.yada.model.SysLog;
+import com.yada.query.SysLogQuery;
 import com.yada.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +23,10 @@ public class SysLogServiceImpl implements SysLogService {
     private SysLogDao sysLogDao;
 
     @Override
-    public void selectDataGrid(PageInfo pageInfo) {
-        Pageable page = new PageRequest(pageInfo.getNowpage() - 1, pageInfo.getSize(),
-                "asc".equals(pageInfo.getOrder()) ? Sort.Direction.ASC : Sort.Direction.DESC, pageInfo.getSort());
+    public Data selectDataGrid(SysLogQuery query) {
+        Pageable page = new PageRequest(query.getPage(), query.getRows(), query.getOrder(), query.getSort());
         Page<SysLog> sysLogs = sysLogDao.findAll(page);
-
-        pageInfo.setRows(sysLogs.getContent());
-        pageInfo.setTotal((int) sysLogs.getTotalElements());
+        return new Data(sysLogs.getTotalElements(), sysLogs.getContent());
     }
 
 

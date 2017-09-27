@@ -1,7 +1,7 @@
 package com.yada.controller;
 
 import com.yada.commons.base.BaseController;
-import com.yada.commons.result.PageInfo;
+import com.yada.commons.result.Data;
 import com.yada.commons.shiro.PasswordHash;
 import com.yada.commons.utils.StringUtils;
 import com.yada.model.Role;
@@ -48,18 +48,12 @@ public class UserController extends BaseController {
      * 用户管理列表
      *
      * @param query
-     * @param page
-     * @param rows
-     * @param sort
-     * @param order
      * @return
      */
     @PostMapping("/dataGrid")
     @ResponseBody
-    public Object dataGrid(UserQuery query, Integer page, Integer rows, String sort, String order) {
-        PageInfo pageInfo = new PageInfo(page, rows, sort, order);
-        userService.selectDataGrid(query, pageInfo);
-        return pageInfo;
+    public Data dataGrid(UserQuery query) {
+        return userService.selectDataGrid(query);
     }
 
     /**
