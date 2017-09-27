@@ -4,6 +4,7 @@ import com.yada.commons.result.PageInfo;
 import com.yada.commons.utils.StringUtils;
 import com.yada.dao.UserDao;
 import com.yada.model.User;
+import com.yada.query.UserQuery;
 import com.yada.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,12 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void selectDataGrid(PageInfo pageInfo) {
+    public void selectDataGrid(UserQuery query, PageInfo pageInfo) {
         Pageable page = new PageRequest(pageInfo.getNowpage() - 1, pageInfo.getSize(),
                 "asc".equals(pageInfo.getOrder()) ? Sort.Direction.ASC : Sort.Direction.DESC, pageInfo.getSort());
-        Page<User> users = userDao.findAll(page);
+        Page<User> users = userDao.findAll(query, page);
 
-        // TODO 查询条件
         pageInfo.setRows(users.getContent());
         pageInfo.setTotal((int) users.getTotalElements());
     }

@@ -26,6 +26,7 @@ public class Role implements Serializable {
      * 角色资源
      */
     @ManyToMany(fetch = FetchType.EAGER)
+    @OrderBy
     @JoinTable(name = "role_resource", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "resource_id"))
     private Set<Resource> resources;
 

@@ -1,12 +1,10 @@
 package com.yada.query;
 
+import com.yada.model.Organization;
 import com.yada.model.User;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,7 +56,8 @@ public class UserQuery implements Specification<User> {
         List<Predicate> list = new LinkedList<>();
 
         if (organizationId != null && !"".equals(organizationId.trim())) {
-            list.add(cb.equal(root.get("organizationId").as(String.class), organizationId.trim()));
+            Join<User, Organization> join = root.join("organization", JoinType.LEFT);
+            list.add(cb.equal(join.get("id").as(String.class), organizationId.trim()));
         }
         if (name != null && !"".equals(name.trim())) {
             list.add(cb.equal(root.get("name").as(String.class), name.trim()));

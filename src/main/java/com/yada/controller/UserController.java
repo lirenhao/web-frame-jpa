@@ -6,6 +6,7 @@ import com.yada.commons.shiro.PasswordHash;
 import com.yada.commons.utils.StringUtils;
 import com.yada.model.Role;
 import com.yada.model.User;
+import com.yada.query.UserQuery;
 import com.yada.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 用户管理
@@ -44,7 +47,7 @@ public class UserController extends BaseController {
     /**
      * 用户管理列表
      *
-     * @param user
+     * @param query
      * @param page
      * @param rows
      * @param sort
@@ -53,25 +56,9 @@ public class UserController extends BaseController {
      */
     @PostMapping("/dataGrid")
     @ResponseBody
-    public Object dataGrid(User user, Integer page, Integer rows, String sort, String order) {
+    public Object dataGrid(UserQuery query, Integer page, Integer rows, String sort, String order) {
         PageInfo pageInfo = new PageInfo(page, rows, sort, order);
-        Map<String, Object> condition = new HashMap<String, Object>();
-
-        if (StringUtils.isNotBlank(user.getName())) {
-            condition.put("name", user.getName());
-        }
-//        if (user.getOrganization() != null & user.getOrganization().getId() != null) {
-//            condition.put("organizationId", user.getOrganization().getId());
-//        }
-        // TODO 查询
-//        if (user.getCreatedateStart() != null) {
-//            condition.put("startTime", user.getCreatedateStart());
-//        }
-//        if (user.getCreatedateEnd() != null) {
-//            condition.put("endTime", user.getCreatedateEnd());
-//        }
-        pageInfo.setCondition(condition);
-        userService.selectDataGrid(pageInfo);
+        userService.selectDataGrid(query, pageInfo);
         return pageInfo;
     }
 

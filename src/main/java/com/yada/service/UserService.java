@@ -3,6 +3,7 @@ package com.yada.service;
 import com.yada.commons.base.BaseService;
 import com.yada.commons.result.PageInfo;
 import com.yada.model.User;
+import com.yada.query.UserQuery;
 
 import java.util.List;
 
@@ -15,6 +16,6 @@ public interface UserService extends BaseService<User, Long> {
 
     void updatePwdByUserId(Long userId, String md5Hex);
 
-    void selectDataGrid(PageInfo pageInfo);
+    void selectDataGrid(UserQuery query, PageInfo pageInfo);
 
 }
