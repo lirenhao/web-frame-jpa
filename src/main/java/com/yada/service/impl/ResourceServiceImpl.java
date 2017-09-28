@@ -6,6 +6,7 @@ import com.yada.dao.ResourceDao;
 import com.yada.dao.RoleDao;
 import com.yada.dao.UserDao;
 import com.yada.model.Resource;
+import com.yada.model.Role;
 import com.yada.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -80,14 +81,14 @@ public class ResourceServiceImpl implements ResourceService {
         }
         // 普通用户
         List<Long> roleIdList = userDao.findRoleIdById(shiroUser.getId());
-        if (roleIdList == null) {
+        if (roleIdList.size() == 0) {
             return trees;
         }
         List<Resource> resourceLists = roleDao.findResourceById(roleIdList);
         if (resourceLists == null) {
             return trees;
         }
-
+        resourceToTree(trees, resourceLists);
         return trees;
     }
 
@@ -122,6 +123,11 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public void delete(Long aLong) {
+        Resource resource = resourceDao.findOne(aLong);
+        List<Role> roles = roleDao.findByResources_Id(aLong);
+        for (Role role : roles) {
+            role.getResources().remove(resource);
+        }
         resourceDao.delete(aLong);
     }
 }

@@ -3,6 +3,7 @@ package com.yada.service.impl;
 import com.yada.commons.result.Data;
 import com.yada.commons.result.Tree;
 import com.yada.commons.utils.StringUtils;
+import com.yada.dao.ResourceDao;
 import com.yada.dao.RoleDao;
 import com.yada.dao.UserDao;
 import com.yada.model.Resource;
@@ -30,6 +31,9 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private ResourceDao resourceDao;
+
 
     @Override
     public Data selectDataGrid(RoleQuery query) {
@@ -54,19 +58,15 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void updateRoleResource(Long roleId, String resourceIds) {
-        // 先删除后添加,有点爆力
-        roleDao.delete(roleId);
-
-        Role role = new Role();
-        Set<Resource> resources = new HashSet<Resource>();
+        Role role = roleDao.findOne(roleId);
+        role.getResources().clear();
 
         String[] resourceIdArray = resourceIds.split(",");
         for (String resourceId : resourceIdArray) {
-            Resource resource = new Resource();
-            resource.setId(Long.parseLong(resourceId));
+            Resource resource = resourceDao.findOne(Long.parseLong(resourceId));
+            role.getResources().add(resource);
         }
-        role.setResources(resources);
-        roleDao.save(role);
+        roleDao.saveAndFlush(role);
     }
 
     @Override
