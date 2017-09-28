@@ -1,0 +1,16 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${superQueryClassPackage};
+
+/**
+ * <p>
+ * $!{table.comment} 查询类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public class ${table.queryName} extends ${superQueryClass}<${entity}> {
+
+}
