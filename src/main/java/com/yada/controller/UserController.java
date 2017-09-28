@@ -75,7 +75,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("/add")
     @ResponseBody
-    public Object add(@Valid User user, @Valid String[] roleIds) {
+    public Object add(@Valid User user, @Valid Long[] roleIds) {
         List<User> list = userService.selectByLoginName(user);
         if (list != null && !list.isEmpty()) {
             return renderError("登录名已存在!");
@@ -84,6 +84,15 @@ public class UserController extends BaseController {
         String pwd = passwordHash.toHex(user.getPassword(), salt);
         user.setSalt(salt);
         user.setPassword(pwd);
+
+        Set<Role> roles = new HashSet<Role>();
+        for(Long roleId : roleIds){
+            Role role = new Role();
+            role.setId(roleId);
+            roles.add(role);
+        }
+        user.setRoles(roles);
+
         userService.save(user);
         return renderSuccess("添加成功");
     }

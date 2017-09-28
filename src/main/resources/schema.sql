@@ -14,6 +14,7 @@ INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`,
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('12', '角色管理', '/role/manager', 'ajax', '角色管理', 'fi-torso-business', '1', '2', '0', '1', '0', '2014-02-19 01:00:00');
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('13', '用户管理', '/user/manager', 'ajax', '用户管理', 'fi-torsos-all', '1', '3', '0', '1', '0', '2014-02-19 01:00:00');
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('14', '部门管理', '/organization/manager', 'ajax', '部门管理', 'fi-results-demographics', '1', '4', '0', '1', '0', '2014-02-19 01:00:00');
+INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('15', '修改密码', '/user/editPwdPage', 'ajax', null, 'fi-unlock', null, '4', '0', '1', '1', '2015-12-07 20:23:06');
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('111', '列表', '/resource/treeGrid', 'ajax', '资源列表', 'fi-list', '11', '0', '0', '1', '1', '2014-02-19 01:00:00');
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('112', '添加', '/resource/add', 'ajax', '资源添加', 'fi-page-add', '11', '0', '0', '1', '1', '2014-02-19 01:00:00');
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('113', '编辑', '/resource/edit', 'ajax', '资源编辑', 'fi-page-edit', '11', '0', '0', '1', '1', '2014-02-19 01:00:00');
@@ -31,11 +32,9 @@ INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`,
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('142', '添加', '/organization/add', 'ajax', '部门添加', 'fi-page-add', '14', '0', '0', '1', '1', '2014-02-19 01:00:00');
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('143', '编辑', '/organization/edit', 'ajax', '部门编辑', 'fi-page-edit', '14', '0', '0', '1', '1', '2014-02-19 01:00:00');
 INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('144', '删除', '/organization/delete', 'ajax', '部门删除', 'fi-page-delete', '14', '0', '0', '1', '1', '2014-02-19 01:00:00');
-INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('221', '日志监控', '', null, null, 'fi-folder', null, '3', '0', '0', '0', '2015-12-01 11:44:20');
-INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('226', '修改密码', '/user/editPwdPage', 'ajax', null, 'fi-unlock', null, '4', '0', '1', '1', '2015-12-07 20:23:06');
-INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('227', '登录日志', '/sysLog/manager', 'ajax', null, 'fi-info', '221', '0', '0', '1', '0', '2016-09-30 22:10:53');
-INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('228', 'Druid监控', '/druid', 'iframe', null, 'fi-monitor', '221', '0', '0', '1', '0', '2016-09-30 22:12:50');
-INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('229', '系统图标', '/icons.html', 'ajax', null, 'fi-photo', '221', '0', '0', '1', '0', '2016-12-24 15:53:47');
+INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('2', '日志监控', '', null, null, 'fi-folder', null, '3', '0', '0', '0', '2015-12-01 11:44:20');
+INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('21', '登录日志', '/sysLog/manager', 'ajax', null, 'fi-info', '2', '0', '0', '1', '0', '2016-09-30 22:10:53');
+INSERT INTO `resource` (`id`, `name`, `url`, `open_mode`, `description`, `icon`, `pid`, `seq`, `status`, `opened`, `resource_type`, `create_time`) VALUES ('22', '系统图标', '/icons.html', 'ajax', null, 'fi-photo', '2', '0', '0', '1', '0', '2016-12-24 15:53:47');
 
 -- ----------------------------
 -- Records of role
@@ -70,24 +69,22 @@ INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '141');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '142');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '143');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '144');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '221');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '227');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '228');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '2');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('1', '21');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '1');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '13');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '131');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '132');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '133');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '221');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '227');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '228');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '2');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('2', '21');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '1');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '14');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '141');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '142');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '143');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '221');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '226');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '2');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('7', '15');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '1');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '11');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '111');
@@ -97,10 +94,9 @@ INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '13');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '131');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '14');
 INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '141');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '221');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '227');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '228');
-INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '229');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '2');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '21');
+INSERT INTO `role_resource` (`role_id`, `resource_id`) VALUES ('8', '22');
 
 -- ----------------------------
 -- Records of user
