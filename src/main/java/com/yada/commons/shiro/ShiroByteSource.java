@@ -13,12 +13,12 @@ import java.util.Arrays;
  * 此处为了redis缓存实现序列化
  */
 public class ShiroByteSource implements ByteSource, Serializable {
+
 	private static final long serialVersionUID = -6814382603612799610L;
+
 	private volatile byte[] bytes;
 	private String cachedHex;
 	private String cachedBase64;
-
-	public ShiroByteSource() {}
 
 	public ShiroByteSource(String string) {
 		this.bytes = CodecSupport.toBytes(string);
