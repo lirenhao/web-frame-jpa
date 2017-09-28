@@ -36,15 +36,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) {
+        User userInfo = userDao.findOne(user.getId());
         if (StringUtils.isBlank(user.getPassword())) {
-            user.setPassword(null);
+            user.setPassword(userInfo.getPassword());
         }
+        user.setSalt(userInfo.getSalt());
+        user.setCreateTime(userInfo.getCreateTime());
         userDao.saveAndFlush(user);
     }
 
     @Override
     public void updatePwdByUserId(Long userId, String md5Hex) {
-        User user = new User();
+        User user = userDao.findOne(userId);
         user.setId(userId);
         user.setPassword(md5Hex);
         userDao.saveAndFlush(user);
