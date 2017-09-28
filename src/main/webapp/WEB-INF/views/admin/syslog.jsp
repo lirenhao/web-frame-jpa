@@ -8,6 +8,8 @@
             pagination: true,
             singleSelect: true,
             idField: 'id',
+            sortName: 'createTime',
+            sortOrder: 'desc',
             pageSize: 20,
             pageList: [10, 20, 30, 40, 50, 100, 200, 300, 400, 500],
             columns: [[{
@@ -18,7 +20,8 @@
             }, {
                 width: '80',
                 title: '用户名',
-                field: 'roleName'
+                field: 'roleName',
+                sortable: true
             }, {
                 width: '100',
                 title: 'IP地址',
@@ -31,7 +34,8 @@
             }, {
                 width: '130',
                 title: '创建时间',
-                field: 'createTime'
+                field: 'createTime',
+                sortable: true
             }]]
         });
     });

@@ -28,10 +28,6 @@ public class SysLogController {
     @PostMapping("/dataGrid")
     @ResponseBody
     public Data dataGrid(SysLogQuery query) {
-//        @RequestParam(value = "sort", defaultValue = "") String sort,
-//        @RequestParam(value = "order", defaultValue = "DESC") String order
-        query.setOrder("DESC");
-        query.setSort("create_time");
         return sysLogService.selectDataGrid(query);
     }
 }
