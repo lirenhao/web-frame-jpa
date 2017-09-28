@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -74,7 +75,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("/add")
     @ResponseBody
-    public Object add(@Valid User user) {
+    public Object add(@Valid User user, @Valid String[] roleIds) {
         List<User> list = userService.selectByLoginName(user);
         if (list != null && !list.isEmpty()) {
             return renderError("登录名已存在!");
@@ -116,7 +117,7 @@ public class UserController extends BaseController {
     @RequiresRoles("admin")
     @PostMapping("/edit")
     @ResponseBody
-    public Object edit(@Valid User user) {
+    public Object edit(@Valid User user, @Valid Long[] roleIds) {
         List<User> list = userService.selectByLoginName(user);
         if (list != null && !list.isEmpty()) {
             return renderError("登录名已存在!");
@@ -128,6 +129,13 @@ public class UserController extends BaseController {
             String pwd = passwordHash.toHex(user.getPassword(), salt);
             user.setPassword(pwd);
         }
+        Set<Role> roles = new HashSet<Role>();
+        for(Long roleId : roleIds){
+            Role role = new Role();
+            role.setId(roleId);
+            roles.add(role);
+        }
+        user.setRoles(roles);
         userService.update(user);
         return renderSuccess("修改成功！");
     }

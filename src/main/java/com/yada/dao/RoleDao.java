@@ -16,8 +16,6 @@ public interface RoleDao extends JpaRepository<Role, Long>, JpaSpecificationExec
 
     List<Role> findByResources_Id(Long id);
 
-    List<Long> findResourceIdById(Long id);
-
     @Query("SELECT role.resources FROM Role as role WHERE role.id in :ids")
     List<Resource> findResourceById(@Param("ids") List<Long> ids);
 }

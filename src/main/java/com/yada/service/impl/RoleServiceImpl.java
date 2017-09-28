@@ -8,6 +8,7 @@ import com.yada.dao.RoleDao;
 import com.yada.dao.UserDao;
 import com.yada.model.Resource;
 import com.yada.model.Role;
+import com.yada.model.User;
 import com.yada.query.RoleQuery;
 import com.yada.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Long> selectResourceIdListByRoleId(Long id) {
-        return roleDao.findResourceIdById(id);
+        Role role = roleDao.findOne(id);
+        List<Long> resourceIds = new ArrayList<Long>();
+        for (Resource r : role.getResources()) {
+            resourceIds.add(r.getId());
+        }
+        return resourceIds;
     }
 
     @Override
@@ -111,11 +117,19 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void update(Role model) {
+        Role role = roleDao.findOne(model.getId());
+        model.setResources(role.getResources());
         roleDao.saveAndFlush(model);
     }
 
     @Override
     public void delete(Long aLong) {
+        Role role = roleDao.findOne(aLong);
+        role.getResources().clear();
+        List<User> users = userDao.findByRoles_Id(aLong);
+        for (User user : users) {
+            user.getRoles().remove(role);
+        }
         roleDao.delete(aLong);
     }
 }

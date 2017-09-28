@@ -18,7 +18,7 @@
             multiple : true,
             required : true,
             cascadeCheck : false,
-            value : ${roleIds }
+            value : ${roleIds}
         });
 
         $('#userEditForm').form({
@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <td>部门</td>
-                    <td><select id="userEditorganizationId" name="organizationId" style="width: 140px; height: 29px;" class="easyui-validatebox" data-options="required:true"></select></td>
+                    <td><select id="userEditorganizationId" name="organization.id" style="width: 140px; height: 29px;" class="easyui-validatebox" data-options="required:true"></select></td>
                     <td>角色</td>
                     <td><input  id="userEditRoleIds" name="roleIds" style="width: 140px; height: 29px;"/></td>
                 </tr>

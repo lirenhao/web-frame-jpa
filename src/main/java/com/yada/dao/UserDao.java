@@ -19,4 +19,6 @@ public interface UserDao extends JpaRepository<User, Long>, JpaSpecificationExec
 
     @Query("SELECT role.id FROM User as user JOIN user.roles role WHERE user.id = :id")
     List<Long> findRoleIdById(@Param("id") Long id);
+
+    List<User> findByRoles_Id(Long id);
 }
