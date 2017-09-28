@@ -21,4 +21,6 @@ public interface UserDao extends JpaRepository<User, Long>, JpaSpecificationExec
     List<Long> findRoleIdById(@Param("id") Long id);
 
     List<User> findByRoles_Id(Long id);
+
+    List<User> findByOrganization_Id(Long id);
 }

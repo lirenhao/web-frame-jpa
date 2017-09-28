@@ -141,6 +141,7 @@ public class ResourceController extends BaseController {
     @RequestMapping("/delete")
     @ResponseBody
     public Object delete(Long id) {
+        // TODO 不能删除子资源
         resourceService.delete(id);
         return renderSuccess("删除成功！");
     }

@@ -116,6 +116,7 @@ public class OrganizationController extends BaseController {
     @RequestMapping("/delete")
     @ResponseBody
     public Object delete(Long id) {
+        // TODO 不能删除子资源
         organizationService.delete(id);
         return renderSuccess("删除成功！");
     }

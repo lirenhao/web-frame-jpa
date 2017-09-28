@@ -2,7 +2,9 @@ package com.yada.service.impl;
 
 import com.yada.commons.result.Tree;
 import com.yada.dao.OrganizationDao;
+import com.yada.dao.UserDao;
 import com.yada.model.Organization;
+import com.yada.model.User;
 import com.yada.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -21,10 +23,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Autowired
     private OrganizationDao organizationDao;
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public Organization findById(Long id) {
-        return organizationDao.getOne(id);
+        return organizationDao.findOne(id);
     }
 
     @Override
@@ -34,11 +38,19 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void update(Organization model) {
+        Organization orgInfo = organizationDao.findOne(model.getId());
+        model.setCreateTime(orgInfo.getCreateTime());
         organizationDao.saveAndFlush(model);
     }
 
     @Override
     public void delete(Long id) {
+        List<User> users = userDao.findByOrganization_Id(id);
+        // 删除机构时删除对应的用户
+        for (User user : users) {
+            user.getRoles().clear();
+            userDao.delete(user.getId());
+        }
         organizationDao.delete(id);
     }
 
