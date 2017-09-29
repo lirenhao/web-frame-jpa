@@ -1,16 +1,17 @@
-package ${package.Mapper};
+package ${package}.dao;
 
-import ${package.Entity}.${entity};
-import ${superMapperClassPackage};
+import ${package}.model.${model};
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
  * <p>
- * $!{table.comment} Dao 接口
+ * ${model} dao层接口
  * </p>
  *
  * @author ${author}
  * @since ${date}
  */
-public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+public interface ${model}Dao extends JpaRepository<${model}, Long>, JpaSpecificationExecutor<${model}> {
 
 }

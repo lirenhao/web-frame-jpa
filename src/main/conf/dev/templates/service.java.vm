@@ -1,16 +1,18 @@
-package ${package.Service};
+package ${package}.service;
 
-import ${package.Entity}.${entity};
-import ${superServiceClassPackage};
+import ${package}.model.${model};
+import com.yada.commons.base.BaseService;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * $!{table.comment} 服务类
+ * ${model} 服务接口类
  * </p>
  *
  * @author ${author}
  * @since ${date}
  */
-public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+@Service
+public interface ${model}Service extends BaseService<${model},Long> {
 	
 }

@@ -1,19 +1,42 @@
-package ${package.ServiceImpl};
+package ${package}.service.impl;
 
-import ${package.Entity}.${entity};
-import ${package.Mapper}.${table.mapperName};
-import ${package.Service}.${table.serviceName};
-import ${superServiceImplClassPackage};
+import ${package}.dao.${model}Dao;
+import ${package}.model.${model};
+import ${package}.service.${model}Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * $!{table.comment} 服务实现类
+ * ${model} 服务实现类
  * </p>
  *
  * @author ${author}
  * @since ${date}
  */
-@Service
-public class ${table.serviceImplName} implements ${table.serviceName} {
-	
+@Repository
+@Transactional
+public class ${model}ServiceImpl implements ${model}Service {
+
+    @Autowired
+    private ${model}Dao ${model}Dao;
+
+    ${model} findById(Long id) {
+        ${model}Dao.findOne(id);
+    };
+
+    void save(${model} model) {
+        ${model}Dao.save(model);
+    };
+
+    void update(${model} model) {
+        ${model} info = ${model}Dao.findOne(model.getId());
+        ${model}Dao.saveAndFlush(model);
+    };
+
+    void delete(Long id) {
+        ${model}Dao.delete(id);
+    };
 }
