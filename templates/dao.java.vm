@@ -1,0 +1,17 @@
+package ${package}.dao;
+
+import ${package}.model.${model};
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+/**
+ * <p>
+ * ${model} dao层接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${model}Dao extends JpaRepository<${model}, Long>, JpaSpecificationExecutor<${model}> {
+
+}
